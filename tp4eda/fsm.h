@@ -8,8 +8,8 @@ typedef enum {WHITE_SPACE}eventType;
 
 typedef struct
 {
-	stateType nextState;
 	void(*act_routine)(void*);
+	stateType nextState;
 }cellType;
 
 #define NUM_OF_EVENTS 5 
