@@ -14,8 +14,16 @@ typedef struct
 	string type;
 }JSONMember;
 
+typedef struct
+{
+	JSONMember *actualMember;
+	JSONMember *prevMember;
+
+}jsonDataAux;
+
 class JSONObject
 {
+
 private:
 	JSONMember * members;
 	unsigned int fieldCount;

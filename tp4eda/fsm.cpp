@@ -37,7 +37,7 @@ void fsm::cycle(stateType *currState, const eventType currEv, void *userData)
 	{ 
 	{ { NULL,IDLE },	{ NULL,SEARCH_NAME },	{error_action,FIN},{ error_action,FIN },{ error_action,FIN } },	//IDLE
 	{ { NULL,SEARCH_NAME},{error_action,FIN},{empty_object,FIN},{ save_name,GET_VALUE},{error_action,FIN} },		//SEARCH_NAME
-	{ { NULL, GET_VALUE},{error_action,FIN},{save_value, FIN }, {error_action,FIN} , {save_value,SEARCH_NAME } },		//GET_VALUE
+	{ { NULL, GET_VALUE},{error_action,FIN},{save_value, FIN }, {error_action,FIN} , {save_value_next,SEARCH_NAME } },		//GET_VALUE
 	{ {NULL,FIN}	,	{ NULL,FIN }	,		{ NULL,FIN }		,		{ NULL,FIN }	, {NULL,FIN} }	//FIN
 	}
 }
@@ -53,6 +53,12 @@ void save_value(void *pointer)
 {
 	jsonDataAux *data = (jsonDataAux*)pointer;
 	data->value = data->object.substr(data->stringInit, data->stringLength);
+}
+
+void save_value_next(void *pointer)
+{
+
+
 }
 
 void save_name(void *pointer)
