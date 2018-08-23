@@ -7,8 +7,19 @@ using namespace std;
 
 typedef enum {}JSONError;
 
+typedef struct
+{
+	string name;
+	string value;
+	string type;
+}JSONMember;
+
 class JSONObject
 {
+private:
+	JSONMember * members;
+	unsigned int fieldCount;
+	JSONError err;
 public:
 	JSONObject();
 	JSONObject(string& s);
