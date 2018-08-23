@@ -1,11 +1,11 @@
 #include "fsm.h"
 
-fsm::fsm()
+fsm::fsm(void* data = NULL)
 {
 
 }
 
-void fsm::cycle(stateType *currState, const eventType currEv, void *userData)
+/*void fsm::cycle(stateType *currState, const eventType currEv, void *userData)
 {
 	const cellType FSMtable[NUM_OF_STATES][NUM_OF_EVENTS] =
 	//	  WHITE_SPACE		  ||	LLAVE
@@ -26,4 +26,20 @@ void fsm::cycle(stateType *currState, const eventType currEv, void *userData)
 	}
 //	typedef enum { IDLE, WAIT_NAME, NAME_STR, WAIT_COLON, WAIT_VALUE, VAL_STRING, BOOL, OBJECT, ARRAY, NUMBER, VAL_NULL, WAIT_OTHER_MEMBER, ERROR, END }stateType;
 
+}*/
+
+
+
+void fsm::cycle(stateType *currState, const eventType currEv, void *userData)
+{
+	const cellType FSMtable[NUM_OF_STATES][NUM_OF_EVENTS] =
+	//			WS	 ||  	 LLAVE_A          ||		 LLAVE_B   ||		DOS_PUNTOS    ||		 COMA  
+	{ 
+	{ { NULL,IDLE },{ NULL,SEARCH_NAME },{error_action,FIN},{ error_action,FIN },{ error_action,FIN } },	//IDLE
+	{ { NULL,SEARCH_NAME},{error_action,FIN},{/* ver que hago*/},{ save_name,GET_VALUE},{error_action,FIN} },		//SEARCH_NAME
+	{ { NULL, GET_VALUE},{error_action,FIN},{guardo_value_fin, FIN }, {error_action,FIN} , {guardo_value_next,SEARCH_NAME } },		//GET_VALUE
+	{ {},{},{} },	FIN
+	}
+
 }
+
